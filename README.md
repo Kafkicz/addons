@@ -1,4 +1,4 @@
-# Home Assistant Add-ons: The official repository
+# Home Assistant Add-ons: Kafkicz's repository
 
 Add-ons for Home Assistant allow you to extend the functionality
 around your Home Assistant setup. These add-ons can consist of an application
@@ -10,6 +10,10 @@ Add-ons can be installed and configured via the Home Assistant frontend on
 systems that have installed Home Assistant.
 
 ## Add-ons provided by this repository
+
+- **[Mastodon Server](/mastodon_server/README.md)**
+
+    A full Mastodon instance running as a Home Assistant Add-on.
 
 - **[CEC Scanner](/cec_scan/README.md)**
 
@@ -101,6 +105,6 @@ about developing an add-on, please see our
 [discord]: https://discord.gg/c5DvZ4e
 [forum]: https://community.home-assistant.io
 [i386-shield]: https://img.shields.io/badge/i386-no-red.svg
-[issue]: https://github.com/home-assistant/addons/issues
+[issue]: https://github.com/Kafkicz/addons/issues
 [reddit]: https://reddit.com/r/homeassistant
 [dev-docs]: https://developers.home-assistant.io/docs/add-ons/

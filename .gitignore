@@ -1,0 +1,66 @@
+# Home Assistant Add-on .gitignore
+
+# Environment / IDE specific
+.docker_config/
+Backups/
+Cache/
+CachedData/
+CachedProfilesData/
+Code Cache/
+Cookies
+Cookies-journal
+Crashpad/
+DIPS
+DawnGraphiteCache/
+DawnWebGPUCache/
+Dictionaries/
+GPUCache/
+Local Storage/
+Network Persistent State
+Preferences
+Session Storage/
+Shared Dictionary/
+TransportSecurity
+Trust Tokens
+Trust Tokens-journal
+User/
+blob_storage/
+languagepacks.json
+logs/
+machineid
+no_sandbox/
+.docker/
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+yarn-error.log
+.pnp/
+.pnp.js
+
+# Build artifacts
+dist/
+build/
+*.gem
+*.egg-info/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Home Assistant specific
+.ha/
