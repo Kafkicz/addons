@@ -1,31 +1,34 @@
-name: "Mastodon Server"
-description: "Vlastní Mastodon instance běžící jako Home Assistant Add-on."
-version: "1.2.0"
-slug: "mastodon_server"
-init: false
+---
+name: Mastodon Server
+description: Vlastní Mastodon instance běžící jako Home Assistant Add-on.
+version: 1.2.0
+slug: mastodon_server
+url: https://github.com/Kafkicz/addons/tree/master/mastodon_server
 arch:
   - aarch64
   - amd64
+homeassistant: 2023.12.0
 startup: services
 boot: auto
 ingress: true
+ingress_port: 80
 ports:
   80/tcp: 80
   443/tcp: 443
 options:
-  domain: "example.local"
-  mastodon_instance_name: "Moje HA Instance"
+  domain: example.local
+  mastodon_instance_name: Moje HA Instance
   reset_initialization: false
   force_password_reset: false
-  ssl_certificate_path: "/ssl"
+  ssl_certificate_path: /ssl
   secret_key_base: ""
   otp_secret: ""
   vapid_private_key: ""
   vapid_public_key: ""
-  db_host: "localhost"
-  db_user: "mastodon"
-  db_pass: "mastodon"
-  db_name: "mastodon_production"
+  db_host: localhost
+  db_user: mastodon
+  db_pass: mastodon
+  db_name: mastodon_production
 schema:
   domain: str
   mastodon_instance_name: str
