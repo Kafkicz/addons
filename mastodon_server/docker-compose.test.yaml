@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: mastodon
+      POSTGRES_PASSWORD: mastodon
+      POSTGRES_DB: mastodon_production
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mastodon"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mastodon-net
+
+  mastodon:
+    build: 
+      context: .
+      args:
+        BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./test_data:/data
+      - ./test_ssl:/ssl
+    environment:
+      - SUPERVISOR_TOKEN=test-token
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mastodon-net
+
+networks:
+  mastodon-net:
+    driver: bridge

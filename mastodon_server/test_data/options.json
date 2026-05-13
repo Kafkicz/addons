@@ -1,0 +1,15 @@
+{
+  "domain": "localhost",
+  "ssl_certificate_path": "/ssl",
+  "secret_key_base": "test_secret_key_base_at_least_64_chars_long_for_mastodon_to_be_happy_123456",
+  "otp_secret": "test_otp_secret_at_least_64_chars_long_for_mastodon_to_be_happy_123456",
+  "vapid_private_key": "",
+  "vapid_public_key": "",
+  "db_host": "db",
+  "db_user": "mastodon",
+  "db_pass": "mastodon",
+  "db_name": "mastodon_production",
+  "reset_initialization": false,
+  "force_password_reset": false,
+  "mastodon_instance_name": "Mastodon Test"
+}
