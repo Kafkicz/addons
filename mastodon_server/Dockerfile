@@ -1,19 +1,16 @@
 # 1. Definice základního obrazu z ekosystému Home Assistant
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:7.2.1
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:latest
 FROM ${BUILD_FROM}
 
 # Build arguments
 ARG MASTODON_VERSION="v4.2.9"
 
 # 2. Instalace systémových závislostí
-# Instalujeme balíčky pro Mastodon (Ruby, Node), Nginx a pomocné utility
+# Instalujeme balíčky pro Mastodon, vynucujeme Ruby 3.2 z Alpine 3.20 repo
 RUN apk add --no-cache \
     nginx \
     nodejs \
     yarn \
-    ruby \
-    ruby-bundler \
-    ruby-dev \
     postgresql-client \
     redis \
     imagemagick \
@@ -26,7 +23,12 @@ RUN apk add --no-cache \
     pkgconfig \
     build-base \
     git \
-    tzdata
+    tzdata \
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.20/main/ \
+    ruby \
+    ruby-dev \
+    ruby-bundler \
+    ruby-libs
 
 # 3. Nastavení pracovního prostředí
 ENV RAILS_ENV="production"
