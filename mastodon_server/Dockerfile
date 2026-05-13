@@ -6,8 +6,9 @@ FROM ${BUILD_FROM}
 ARG MASTODON_VERSION="v4.2.9"
 
 # 2. Instalace systémových závislostí
-# Instalujeme balíčky pro Mastodon, vynucujeme Ruby 3.2 z Alpine 3.20 repo
-RUN sed -i 's/v3\.[0-9]\+/v3.20/g' /etc/apk/repositories \
+# Instalujeme balíčky pro Mastodon, vynucujeme Ruby 3.2 z Alpine 3.19 repo
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main" > /etc/apk/repositories \
+    && echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     nginx \
@@ -22,14 +23,19 @@ RUN sed -i 's/v3\.[0-9]\+/v3.20/g' /etc/apk/repositories \
     libxslt-dev \
     libidn-dev \
     libidn \
-    pkgconfig \
+    icu-dev \
+    pkgconf \
     build-base \
     git \
     tzdata \
     ruby \
     ruby-dev \
     ruby-bundler \
-    ruby-libs
+    ruby-libs \
+    gcompat \
+    zlib-dev \
+    libffi-dev \
+    yaml-dev
 
 # 3. Nastavení pracovního prostředí
 ENV RAILS_ENV="production"
