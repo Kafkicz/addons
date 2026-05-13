@@ -1,0 +1,6 @@
+services:
+  addons:
+    image: addons
+    build:
+      context: .
+      dockerfile: ./Dockerfile

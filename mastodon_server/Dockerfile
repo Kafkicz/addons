@@ -7,7 +7,9 @@ ARG MASTODON_VERSION="v4.2.9"
 
 # 2. Instalace systémových závislostí
 # Instalujeme balíčky pro Mastodon, vynucujeme Ruby 3.2 z Alpine 3.20 repo
-RUN apk add --no-cache \
+RUN sed -i 's/v3\.[0-9]\+/v3.20/g' /etc/apk/repositories \
+    && apk update \
+    && apk add --no-cache \
     nginx \
     nodejs \
     yarn \
@@ -15,7 +17,7 @@ RUN apk add --no-cache \
     redis \
     imagemagick \
     ffmpeg \
-    libpq-dev \
+    postgresql-dev \
     libxml2-dev \
     libxslt-dev \
     libidn-dev \
@@ -24,7 +26,6 @@ RUN apk add --no-cache \
     build-base \
     git \
     tzdata \
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.20/main/ \
     ruby \
     ruby-dev \
     ruby-bundler \
