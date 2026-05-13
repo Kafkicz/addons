@@ -1,5 +1,5 @@
 # 1. Definice základního obrazu z ekosystému Home Assistant
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:latest
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:7.2.1
 FROM ${BUILD_FROM}
 
 # Build arguments
@@ -21,6 +21,8 @@ RUN apk add --no-cache \
     libpq-dev \
     libxml2-dev \
     libxslt-dev \
+    libidn-dev \
+    libidn \
     pkgconfig \
     build-base \
     git \
@@ -37,7 +39,8 @@ RUN git clone --depth 1 --branch ${MASTODON_VERSION} https://github.com/mastodon
     && bundle config set --local deployment 'true' \
     && bundle config set --local without 'development test' \
     && bundle install -j$(getconf _NPROCESSORS_ONLN) \
-    && yarn install --pure-lockfile
+    && yarn install --pure-lockfile \
+    && RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 # 5. Příprava souborového systému pro Home Assistant
 COPY rootfs /

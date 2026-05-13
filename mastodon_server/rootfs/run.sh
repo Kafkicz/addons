@@ -74,13 +74,21 @@ fi
 bashio::log.info "Startuji Redis..."
 redis-server --daemonize yes
 
+# Čekání na databázi a migrace
+cd /opt/mastodon
+bashio::log.info "Provádím migrace databáze..."
+# Použijeme RAILS_ENV=production a zkusíme migrace
+bundle exec rake db:migrate
+
 # Start Mastodon služeb (v pozadí)
 bashio::log.info "Startuji Mastodon (Puma)..."
-cd /opt/mastodon
 bundle exec puma -C config/puma.rb &
 
 bashio::log.info "Startuji Sidekiq..."
 bundle exec sidekiq &
+
+bashio::log.info "Startuji Streaming server..."
+PORT=4000 node ./streaming &
 
 # Start Nginx (v popředí)
 bashio::log.info "Služby běží. Mastodon je dostupný na https://${DOMAIN}"

@@ -1,7 +1,7 @@
 ---
 name: Mastodon Server
 description: Vlastní Mastodon instance běžící jako Home Assistant Add-on.
-version: 1.2.0
+version: 1.2.1
 slug: mastodon_server
 url: https://github.com/Kafkicz/addons/tree/master/mastodon_server
 arch:
